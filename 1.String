@@ -1,0 +1,43 @@
+while True:
+    string = input("Enter a String: ")
+
+    print("\nChoose an operation:")
+    print("1. Upper case")
+    print("2. Lower case")
+    print("3. Length of String")
+    print("4. Reverse String")
+    print("5. Count a character")
+    print("6. Replace a word")
+
+    choice = int(input("Enter your choice (1-6): "))
+
+    match choice:
+        case 1:
+            print("Upper case:", string.upper())
+
+        case 2:
+            print("Lower case:", string.lower())
+
+        case 3:
+            print("Length:", len(string))
+
+        case 4:
+            print("Reverse:", string[::-1])
+
+        case 5:
+            ch = input("Enter character to count: ")
+            print("Count:", string.count(ch))
+
+        case 6:
+            old = input("Enter a word to replace: ")
+            new = input("Enter new word: ")
+            print("Result:", string.replace(old, new))
+
+        case _:
+            print("Invalid choice")
+
+    cont = input("Do you want to continue? (y/n): ")
+
+    if cont.lower() != "y":
+        print("Program Ended")
+        break
