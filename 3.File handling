@@ -1,0 +1,30 @@
+try:
+    filename = input("Enter filename: ")
+    n = int(input("Enter number of lines: "))
+    word = input("Enter word to count: ").lower()
+
+    with open(filename, "r") as f:
+        lines = f.readlines()
+
+        print(f"First {n} lines:")
+
+        for line in lines[:n]:
+            print(line.strip())
+
+        text = " ".join(lines).lower()
+
+        for char in ",.!?:;\"()":
+            text = text.replace(char, "")
+
+        count = text.split().count(word)
+
+        print(f"In the word '{word}' appears {count} times.")
+
+except FileNotFoundError:
+    print("Error: File not found.")
+
+except ValueError:
+    print("Error: Please enter a valid number of lines.")
+
+finally:
+    print("File operation finished.")
