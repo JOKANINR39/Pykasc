@@ -1,0 +1,25 @@
+from functools import reduce
+
+number = [1, 2, 3, 4, 5]
+
+print("Original List:", number)
+
+square = lambda x: x * x
+
+print("Lambda")
+print(f"Square of 5 using lambda: {square(5)}")
+
+doubled_numbers = list(map(lambda x: x * 2, number))
+
+print("Map Demo")
+print(f"Doubled list: {doubled_numbers}")
+
+even_numbers = list(filter(lambda x: x % 2 == 0, number))
+
+print("Filter Demo")
+print(f"Even numbers only: {even_numbers}")
+
+product_of_all = reduce(lambda x, y: x * y, number)
+
+print("Reduce Demo")
+print(f"Product of all numbers combined: {product_of_all}")
