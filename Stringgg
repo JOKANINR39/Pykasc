@@ -1,0 +1,31 @@
+text = input("Enter a string:")
+while True:
+  print("\n Choose an option")
+  print ("\n 1.Uppercase")
+  print ("\n 2.Lowercase")
+  print ("\n 3.Reverse")
+  print ("\n 4.Replace")
+  print ("\n 5.Length of the string")
+  print ("\n 6.Count of character")
+  choice = int(input ("Enter your choice 1-6:"))
+  if choice==1:
+    print ("\n 1.Uppercase", text.upper())
+  elif choice==2:
+    print ("\n 2.Lowercase",text.lower())
+  elif choice==3:
+    print ("\n 3.Reverse", text[::-1])
+  elif choice==4:
+    old = input("Enter old word: ")
+    new = input("Enter new word: ")
+    print ("\n 4.Replace ", text.replace(old,new))
+  elif choice==5:
+    print ("\n 5.Length of the string",len(text))
+  elif choice==6:
+    ch=input("Enter word to count: ")
+    print ("\n 6.Count of character",text.count(ch))
+  else:
+    print("\n Invalid choice")
+  cont = input("\n Do you want to continue (y/n):")
+  if cont.lower != "y":
+    print("Program Ended")
+  
