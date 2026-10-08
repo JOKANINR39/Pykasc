@@ -1,0 +1,16 @@
+from functools import reduce
+
+num=[1,2,3,4,5]
+print("Original numbers :",num)
+sq= lambda x:x**2
+print (" Lambda demo:")
+print ("Square of 9 using lambda :",sq(9))
+d_num=list(map(lambda x: x*2, num))
+print ("\n Map demo:")
+print ("Doubled number :",d_num)
+eve_num = list(filter(lambda x: x%2==0,num))
+print ("\n Filter demo:")
+print("\n Even number:",eve_num)
+pr_num=reduce(lambda x,y:x*y, num)
+print ("\n Reduce demo:")
+print("\n Product of all numbers:",pr_num)
