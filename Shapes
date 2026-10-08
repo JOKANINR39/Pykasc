@@ -1,0 +1,84 @@
+shapes.py 
+
+class Shape:
+    def area(self):
+        raise NotImplementedError("Subclass must implement this")
+
+
+class Circle(Shape):
+    def __init__(self, rad):
+        self.rad = rad
+
+    def area(self):
+        return 3.14 * self.rad * self.rad
+
+
+class Rect(Shape):
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+
+    def area(self):
+        return self.length * self.width
+
+
+class Tri(Shape):
+    def __init__(self, height, base):
+        self.height = height
+        self.base = base
+
+    def area(self):
+        return 0.5 * self.height * self.base
+
+
+
+test.py
+
+from geometry import Circle, Rect, Tri
+
+
+def display_area(shape):
+    print("Area =", shape.area())
+
+
+c = Circle(5)
+r = Rect(5, 10)
+t = Tri(6, 8)
+
+display_area(c)
+display_area(r)
+display_area(t)
+
+
+
+setup.py
+
+from setuptools import setup, find_packages
+
+setup(
+    name="geometry",
+    version="0.1",
+    author="Dharshana",
+    description="Demonstrate inheritance with polymorphism",
+    packages=find_packages(),
+)
+
+__int__.py
+
+from .shapes import Shape, Circle, Rect, Tri
+
+
+
+
+
+geometry_project/
+│
+├── setup.py
+├── test.py
+│
+└── geometry/
+    ├── __init__.py
+    └── shapes.py
+
+
+
