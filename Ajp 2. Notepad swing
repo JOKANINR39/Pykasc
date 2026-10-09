@@ -1,0 +1,46 @@
+import javax.swing.*;
+import java.awt.event.*;
+public class StudentForm extends JFrame implements ActionListener{
+    JTextArea ta;
+    JMenuItem newfile,save,exit;
+    StudentForm(){
+        setTitle("Notepad");
+        ta = new JTextArea();
+        JScrollPane sp = new JScrollPane(ta);
+        JMenuBar mb = new JMenuBar();
+        JMenu f1 = new JMenu("File");
+        newfile = new JMenuItem("New");
+        save = new JMenuItem("Save");
+        exit = new JMenuItem("Exit");
+
+        newfile.addActionListener(this);
+        save.addActionListener(this);
+        exit.addActionListener(this);
+
+        f1.add(newfile);
+        f1.add(save);
+        f1.add(exit);
+
+        mb.add(f1);
+        setJMenuBar(mb);
+        add(sp);
+
+        setSize(400,300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource()==newfile){
+            ta.setText("");
+        }
+        else if(e.getSource()==save){
+            JOptionPane.showMessageDialog(this,"File saved");
+        }
+        else if(e.getSource()==exit){
+            System.exit(0);
+        }
+    }
+    public static void main(String args[]){
+        new StudentForm();
+    }
+}
