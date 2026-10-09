@@ -146,3 +146,145 @@ public class EmployeeJDBC {
     }
 }
 
+-----------------------
+
+3.applet
+
+
+import java.applet.*;
+import java.awt.*;
+import java.awt.event.*;
+
+/*
+<applet code="CalculatorApplet" width="300" height="200"> 
+</applet> 
+*/
+
+public class CalculatorApplet extends Applet implements ActionListener{
+    TextField t1,t2;
+    Label result;
+    Button add,sub,mul,div;
+
+    public void init()
+    {
+        Label l1 = new Label("First number:");
+        t1 = new TextField();
+        add(l1); add(t1);
+
+        Label l2 = new Label("Second number:");
+        t2 = new TextField();
+        add(l2); add(t2);
+
+        add = new Button("Add");
+        sub = new Button("Sub");
+        mul = new Button("Mul");
+        div = new Button("Div");
+
+        add(add);
+        add(sub);
+        add(mul);
+        add(div);
+
+        result = new Label("Result:");
+        add(result);
+        
+        add.addActionListener(this);
+        sub.addActionListener(this);
+        mul.addActionListener(this);
+        div.addActionListener(this);   
+    }
+    public void actionPerformed(ActionEvent e){
+        double a = Double.parseDouble(t1.getText());
+        double b = Double.parseDouble(t2.getText());
+        double c = 0;
+
+        if(e.getSource()==add){
+            c=a+b;
+        }
+        else if(e.getSource()==sub){
+            c=a-b;
+        }
+        else if(e.getSource()==mul){
+            c=a*b;
+        }
+        else if(e.getSource()==div){
+            c=a/b;
+        }
+    result.setText("Result:"+c);
+    }
+}
+
+
+
+--------------------------
+
+4. rmi
+app. java
+
+
+import java.rmi.*;
+
+public interface Add extends Remote {
+    int add(int a, int b) throws RemoteException;
+}
+
+
+appiplm. java
+
+
+import java.rmi.*;
+import java.rmi.server.*;
+
+public class AddImpl extends UnicastRemoteObject implements Add {
+
+    public AddImpl() throws RemoteException {
+        super();
+    }
+
+    @Override
+    public int add(int a, int b) throws RemoteException {
+         System.out.println("Recived="+a+"and"+b);
+           return a + b;
+    }
+}
+
+server. java
+
+import java.rmi.*;
+
+public class Server {
+
+    public static void main(String args[]) {
+        try {
+            AddImpl obj = new AddImpl();
+
+            Naming.rebind("rmi://localhost/AddService", obj);
+
+            System.out.println("Server is Ready...");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+
+
+
+client. java
+import java.rmi.*;
+
+public class Client {
+
+    public static void main(String args[]) {
+        try {
+            Add obj = (Add) Naming.lookup("rmi://localhost/AddService");
+
+            int result = obj.add(10, 20);
+           
+            System.out.println("Sum = " + result);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+
+
