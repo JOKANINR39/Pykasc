@@ -1,0 +1,60 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class StudentForm extends JFrame implements ActionListener {
+
+    StudentForm() {
+
+        JLabel l1 = new JLabel("Name");
+        JLabel l2 = new JLabel("Age");
+        JLabel l3 = new JLabel("Gender");
+        JLabel l4 = new JLabel("Course");
+        JLabel l5 = new JLabel("Address");
+
+        JTextField t1 = new JTextField();
+        JTextField t2 = new JTextField();
+
+        JRadioButton r1 = new JRadioButton("Male");
+        JRadioButton r2 = new JRadioButton("Female");
+
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(r1);
+        bg.add(r2);
+
+        JPanel p1 = new JPanel();
+        p1.add(r1);
+        p1.add(r2);
+
+        JCheckBox c1 = new JCheckBox("Java");
+        JCheckBox c2 = new JCheckBox("Python");
+
+        JPanel p2 = new JPanel();
+        p2.add(c1);
+        p2.add(c2);
+
+        JTextArea ta = new JTextArea();
+
+        JButton b = new JButton("Submit");
+        b.addActionListener(this);
+        setLayout(new GridLayout(6, 2));
+        setSize(400, 400);
+
+        add(l1); add(t1);
+        add(l2); add(t2);
+        add(l3); add(p1);
+        add(l4); add(p2);
+        add(l5); add(ta);
+        add(b);
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        JOptionPane.showMessageDialog(this, "Form Submitted");
+    }
+
+    public static void main(String args[]) {
+        new StudentForm();
+    }
+}
