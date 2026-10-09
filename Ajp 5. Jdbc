@@ -1,0 +1,25 @@
+import java.sql.*;
+
+public class EmployeeJDBC {
+    public static void main(String args[]) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/company", "root", ""
+            );
+            Statement stmt = con.createStatement();
+
+            stmt.executeUpdate("INSERT INTO employee VALUES (101, 'Suba', 25000)");
+            stmt.executeUpdate("INSERT INTO employee VALUES (102, 'Trishna', 25000)");
+            stmt.executeUpdate("INSERT INTO employee VALUES (103, 'Varshini', 25000)");
+            stmt.executeUpdate("UPDATE employee SET salary = 30000 WHERE id = 101");
+            stmt.executeUpdate("DELETE FROM employee WHERE id = 103");
+
+            System.out.println("Insert, Update and Delete operations completed Successfully.");
+            con.close();
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
