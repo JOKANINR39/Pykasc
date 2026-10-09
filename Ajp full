@@ -1,0 +1,148 @@
+notepad
+
+import javax.swing.*;
+import java.awt.event.*;
+public class StudentForm extends JFrame implements ActionListener{
+    JTextArea ta;
+    JMenuItem newfile,save,exit;
+    StudentForm(){
+        setTitle("Notepad");
+        ta = new JTextArea();
+        JScrollPane sp = new JScrollPane(ta);
+        JMenuBar mb = new JMenuBar();
+        JMenu f1 = new JMenu("File");
+        newfile = new JMenuItem("New");
+        save = new JMenuItem("Save");
+        exit = new JMenuItem("Exit");
+
+        newfile.addActionListener(this);
+        save.addActionListener(this);
+        exit.addActionListener(this);
+
+        f1.add(newfile);
+        f1.add(save);
+        f1.add(exit);
+
+        mb.add(f1);
+        setJMenuBar(mb);
+        add(sp);
+
+        setSize(400,300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource()==newfile){
+            ta.setText("");
+        }
+        else if(e.getSource()==save){
+            JOptionPane.showMessageDialog(this,"File saved");
+        }
+        else if(e.getSource()==exit){
+            System.exit(0);
+        }
+    }
+    public static void main(String args[]){
+        new StudentForm();
+    }
+}
+
+
+------------------
+
+1. stu form swing
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class StudentForm extends JFrame implements ActionListener {
+
+    StudentForm() {
+
+        JLabel l1 = new JLabel("Name");
+        JLabel l2 = new JLabel("Age");
+        JLabel l3 = new JLabel("Gender");
+        JLabel l4 = new JLabel("Course");
+        JLabel l5 = new JLabel("Address");
+
+        JTextField t1 = new JTextField();
+        JTextField t2 = new JTextField();
+
+        JRadioButton r1 = new JRadioButton("Male");
+        JRadioButton r2 = new JRadioButton("Female");
+
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(r1);
+        bg.add(r2);
+
+        JPanel p1 = new JPanel();
+        p1.add(r1);
+        p1.add(r2);
+
+        JCheckBox c1 = new JCheckBox("Java");
+        JCheckBox c2 = new JCheckBox("Python");
+
+        JPanel p2 = new JPanel();
+        p2.add(c1);
+        p2.add(c2);
+
+        JTextArea ta = new JTextArea();
+
+        JButton b = new JButton("Submit");
+        b.addActionListener(this);
+        setLayout(new GridLayout(6, 2));
+        setSize(400, 400);
+
+        add(l1); add(t1);
+        add(l2); add(t2);
+        add(l3); add(p1);
+        add(l4); add(p2);
+        add(l5); add(ta);
+        add(b);
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        JOptionPane.showMessageDialog(this, "Form Submitted");
+    }
+
+    public static void main(String args[]) {
+        new StudentForm();
+    }
+}
+
+
+
+-----------------------
+
+jdbc
+
+
+import java.sql.*;
+
+public class EmployeeJDBC {
+    public static void main(String args[]) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/company", "root", ""
+            );
+            Statement stmt = con.createStatement();
+
+            stmt.executeUpdate("INSERT INTO employee VALUES (101, 'Suba', 25000)");
+            stmt.executeUpdate("INSERT INTO employee VALUES (102, 'Trishna', 25000)");
+            stmt.executeUpdate("INSERT INTO employee VALUES (103, 'Varshini', 25000)");
+            stmt.executeUpdate("UPDATE employee SET salary = 30000 WHERE id = 101");
+            stmt.executeUpdate("DELETE FROM employee WHERE id = 103");
+
+            System.out.println("Insert, Update and Delete operations completed Successfully.");
+            con.close();
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+
